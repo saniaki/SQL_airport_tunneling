@@ -116,11 +116,104 @@ Sanity checks:
 
 ## Phase 2: Finding two most approperiate airports to construct a high-speed rail tunnel
 
+### Examining data files
+Following quesries are used to examin data usin AWS CLI (Amazon Web Service Command Line Interface)
+<pre>
+aws s3 ls s3://training-coursera2/tbm_sf_la/
+</pre>
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
+    
+<pre>
+aws s3 cp s3://training-coursera2/tbm_sf_la/central/hourly_central.csv -|head
+</pre>
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
+    
+<pre>
+aws s3 cp s3://training-coursera2/tbm_sf_la/north/hourly_north.csv -|head
+</pre>
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
+    
+<pre>
+aws s3 cp s3://training-coursera2/tbm_sf_la/south/hourly_south.tsv -|head
+</pre>
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
+
+**Observations**:
+* First and second data files are comma delimited and third data files is tab delimited
+* Value 999999 is used instead of NULL values in first data file
+* First data file has a header
 
 
+### Creating three individual tables in HDFS for each TBM (bouring machine)
+<pre>
+CREATE EXTERNAL TABLE dig.tbm_sf_la_central
+    (tbm STRING,year SMALLINT,month TINYINT,day TINYINT,hour TINYINT,
+    dist DECIMAL(8,2),lon DOUBLE,lat DOUBLE)
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY ','
+    TBLPROPERTIES('skip.header.line.count'='1','serialization.null.format'='999999');
+</pre>
+
+<pre>
+CREATE EXTERNAL TABLE dig.tbm_sf_la_north
+    (tbm STRING,year SMALLINT,month TINYINT,day TINYINT,hour TINYINT,
+    dist DECIMAL(8,2),lon DOUBLE,lat DOUBLE)
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY ',';
+</pre>
+
+<pre>
+CREATE EXTERNAL TABLE dig.tbm_sf_la_south
+    (tbm STRING,year SMALLINT,month TINYINT,day TINYINT,hour TINYINT,
+    dist DECIMAL(8,2),lon DOUBLE,lat DOUBLE)
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY '\t';
+</pre>
 
 
+### Loading data files isto the tables directories on HDFS
+<pre>
+hdfs dfs -cp s3a://training-coursera2/tbm_sf_la/central/hourly_central.csv /user/hive/warehouse/dig.db/tbm_sf_la_central/
+</pre>
 
+<pre>
+hdfs dfs -cp s3a://training-coursera2/tbm_sf_la/north/hourly_north.csv /user/hive/warehouse/dig.db/tbm_sf_la_north/
+</pre>
+
+<pre>
+hdfs dfs -cp s3a://training-coursera2/tbm_sf_la/south/hourly_south.tsv /user/hive/warehouse/dig.db/tbm_sf_la_south/
+</pre>
+
+### Combining individual tables into a single table including all data, CTAS method is used
+
+<pre>
+CREATE EXTERNAL TABLE dig.tbm_sf_la AS
+    SELECT tbm, year, month, day, hour, dist, lon, lat
+        FROM dig.tbm_sf_la_central
+    UNION ALL
+    SELECT tbm, year, month, day, hour, dist, lon, lat
+        FROM dig.tbm_sf_la_north
+    UNION ALL
+    SELECT tbm, year, month, day, hour, dist, lon, lat
+        FROM dig.tbm_sf_la_south;
+</pre>
+
+### Results
+Number of rows for each TBM
+<pre>
+SELECT tbm, COUNT(*) AS num_rows FROM dig.tbm_sf_la GROUP BY tbm ORDER BY tbm;
+</pre>
+
+<pre>
+**tbm**             **num_rows**
+Bertha II           91619
+Diggy McDigface     93163
+Shai-Hulud          94237
+</pre>
 
 <pre>
 hello, this is
