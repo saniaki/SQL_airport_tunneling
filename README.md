@@ -57,9 +57,13 @@ Average annual passenger capacity	        1996597	1981059
 Average arrival delay in minutes	        10	14
 </pre>
 
+Sanity checks: 
+* Average flight distance is expected to be the same for each pairs
+* Average flight distance for all rows in the results table should be between 300 and 400
+* Average flight distance for all rows in the results table should be between 300 and 400
 
 
-
+## Phase 2: Finding two most approperiate airports to construct a high-speed rail tunnel
 
 
 
