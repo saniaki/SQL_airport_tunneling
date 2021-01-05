@@ -18,7 +18,7 @@ What to report:
 * average yearly total number of seats (passengers) on the planes between the two airports
 
 
-## SQL query
+# SQL query
 SELECT origin, dest,
     ROUND(CAST(COUNT(*) AS decimal)/10) AS avg_num_flights,
     SUM(seats) AS tot_num_seats,
