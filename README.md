@@ -5,23 +5,26 @@ SQL queries for analyzing and managing big data available on Amazon Web Service 
 <img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
 
 
-**Databases** : <br>
+**Data** : <br>
 1 - fly databse
 * ten full years of data, representing flights and airports statistics from January 1, 2008 through December 31, 2017. 
 * four tables, flights (61392822 rows), planes (453361 rows), airports (1333 rows), airlines (25 rows)
 * source https://www.bts.dot.gov/newsroom/2018-traffic-data-us-airlines-and-foreign-airlines-us-flights  <br>
-2 - ....
+
+2 - Tunnel Boring Machines (TBMs) data files
+* Three TBMs are used for three section of tunnel: Bertha II, Shai-Hulud, and Diggy McDigface
+* TBMS are generating data as they are working, the format of generated data is slightly different for each machine
 
 **SQL query engine**: Impala using Hue web interface
 
 ## Phase 1: Finding two most approperiate airports to construct a high-speed rail tunnel
 
-Criteria: 
+*Criteria*: 
 * two airports must be between 300 and 400 miles apart
 * at least 5000 average flights per year between airports, in each direction
 * airport pair with largest total number of seats on the planes between them
 
-What to report:
+*Goals*:
 * pair of airports with above criteria
 * average arrival delay for flights between them
 * average flight distance (in miles) between airports, in each direction
@@ -114,7 +117,12 @@ Sanity checks:
 * Average flight distance for all rows in the results table should be between 300 and 400
 
 
-## Phase 2: Finding two most approperiate airports to construct a high-speed rail tunnel
+## Phase 2: Creating a table for generated data from differetent Tunnel Boring Machines (TBMs) 
+*Problem description*:
+The tunnel is constructed using in three section, where a different TBM is used for each section. Data generated from these TBMs are stored seperatly on Amazon S3. The format of data is also different.
+
+*Goal*:
+Generating a table on HDFS including data from all three TBMs.
 
 ### Examining data files
 Following quesries are used to examin data usin AWS CLI (Amazon Web Service Command Line Interface)
@@ -142,7 +150,8 @@ aws s3 cp s3://training-coursera2/tbm_sf_la/south/hourly_south.tsv -|head
 <p align="center">
 <img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
 
-**Observations**:
+*Observations*:
+* Data are generated hourly including (tbm, year, month, day, hour, distance, longitude, latitude)
 * First and second data files are comma delimited and third data files is tab delimited
 * Value 999999 is used instead of NULL values in first data file
 * First data file has a header
@@ -214,6 +223,18 @@ Bertha II           91619
 Diggy McDigface     93163
 Shai-Hulud          94237
 </pre>
+
+A sample of few rows from final table:
+<pre>
+SELECT * FROM dig.tbm_sf_la
+    ORDER BY dist
+    LIMIT 10;
+</pre>
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
+
+
+
 
 <pre>
 hello, this is
