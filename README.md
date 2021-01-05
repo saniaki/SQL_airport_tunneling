@@ -1,6 +1,10 @@
 # SQL_airport_tunneling
 SQL queries for analyzing and managing big data available on Amazon Web Service coulde
 
+Databses:
+* fly databse: ten full years of data, representing flights and airports statistics from January 1, 2008 through December 31, 2017. (https://www.bts.dot.gov/newsroom/2018-traffic-data-us-airlines-and-foreign-airlines-us-flights)
+
+
 ## SQL query engine: Impala
 
 ## Phase 1: Finding two most approperiate airports to construct a high-speed rail tunnel
