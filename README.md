@@ -15,7 +15,8 @@ SQL queries for analyzing and managing big data available on Amazon Web Service 
 * Three TBMs are used for three section of tunnel: Bertha II, Shai-Hulud, and Diggy McDigface
 * TBMS are generating data as they are working, the format of generated data is slightly different for each machine
 
-**SQL query engine**: Impala using Hue web interface
+**SQL query engine**:
+*Impala using Hue web interface
 
 ## Phase 1: Finding two most approperiate airports to construct a high-speed rail tunnel
 
@@ -75,6 +76,7 @@ SELECT * FROM fly.planes
 
 
 ### SQL query
+Following quesry is used in Impala to answer the questions presented in the "Goals" above.
 <pre>
 SELECT origin, dest,<br>
         ROUND(CAST(COUNT(*) AS decimal)/10) AS avg_num_flights,<br>
@@ -99,7 +101,7 @@ First 8 rows of the results table:
 <img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/Results.jpg" width="900"/>
 
 
-First and second directions:
+A summary of results from first two rows of the results table:
 
 <pre>
                                                 First direction     Second direction
@@ -107,7 +109,7 @@ Three-letter airport code for origin            SFO	                LAX
 Three-letter airport code for destination       LAX	                SFO
 Average flight distance in miles                337	                337
 Average number of flights per year              14712               14540
-    Average annual passenger capacity           1996597             1981059
+Average annual passenger capacity               1996597             1981059
 Average arrival delay in minutes                10	                14
 </pre>
 
@@ -119,10 +121,10 @@ Sanity checks:
 
 ## Phase 2: Creating a table for generated data from differetent Tunnel Boring Machines (TBMs) 
 *Problem description*:
-The tunnel is constructed using in three section, where a different TBM is used for each section. Data generated from these TBMs are stored seperatly on Amazon S3. The format of data is also different.
+* The tunnel is constructed in three sections, where a different TBM is used for each section. Data generated from these TBMs are stored in seperate data files on Amazon S3. The format of data is also different.
 
 *Goal*:
-Generating a table on HDFS including data from all three TBMs.
+* Generating a table on HDFS including data from all three TBMs.
 
 ### Examining data files
 Following quesries are used to examin data usin AWS CLI (Amazon Web Service Command Line Interface)
@@ -130,7 +132,7 @@ Following quesries are used to examin data usin AWS CLI (Amazon Web Service Comm
 aws s3 ls s3://training-coursera2/tbm_sf_la/
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/AWS%20Examining_01.jpg" width="400"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/AWS%20Examining_01.jpg" width="100"/>
     
 <pre>
 aws s3 cp s3://training-coursera2/tbm_sf_la/central/hourly_central.csv -|head
@@ -142,7 +144,7 @@ aws s3 cp s3://training-coursera2/tbm_sf_la/central/hourly_central.csv -|head
 aws s3 cp s3://training-coursera2/tbm_sf_la/north/hourly_north.csv -|head
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/AWS%20Examining_03.jpg" width="400"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/AWS%20Examining_03.jpg" width="450"/>
     
 <pre>
 aws s3 cp s3://training-coursera2/tbm_sf_la/south/hourly_south.tsv -|head
@@ -158,6 +160,7 @@ aws s3 cp s3://training-coursera2/tbm_sf_la/south/hourly_south.tsv -|head
 
 
 ### Creating three individual tables in HDFS for each TBM (bouring machine)
+For firts TBM (central)
 <pre>
 CREATE EXTERNAL TABLE dig.tbm_sf_la_central
     (tbm STRING,year SMALLINT,month TINYINT,day TINYINT,hour TINYINT,
@@ -166,7 +169,7 @@ CREATE EXTERNAL TABLE dig.tbm_sf_la_central
     FIELDS TERMINATED BY ','
     TBLPROPERTIES('skip.header.line.count'='1','serialization.null.format'='999999');
 </pre>
-
+For second TBM (north)
 <pre>
 CREATE EXTERNAL TABLE dig.tbm_sf_la_north
     (tbm STRING,year SMALLINT,month TINYINT,day TINYINT,hour TINYINT,
@@ -174,7 +177,7 @@ CREATE EXTERNAL TABLE dig.tbm_sf_la_north
     ROW FORMAT DELIMITED
     FIELDS TERMINATED BY ',';
 </pre>
-
+For third TBM (south)
 <pre>
 CREATE EXTERNAL TABLE dig.tbm_sf_la_south
     (tbm STRING,year SMALLINT,month TINYINT,day TINYINT,hour TINYINT,
@@ -184,7 +187,8 @@ CREATE EXTERNAL TABLE dig.tbm_sf_la_south
 </pre>
 
 
-### Loading data files isto the tables directories on HDFS
+### Loading data files into the tables directories on HDFS
+These three command lines are used to doanlowd data from S3 into the HDFS
 <pre>
 hdfs dfs -cp s3a://training-coursera2/tbm_sf_la/central/hourly_central.csv /user/hive/warehouse/dig.db/tbm_sf_la_central/
 </pre>
@@ -198,7 +202,7 @@ hdfs dfs -cp s3a://training-coursera2/tbm_sf_la/south/hourly_south.tsv /user/hiv
 </pre>
 
 ### Combining individual tables into a single table including all data, CTAS method is used
-
+Following SQL statement is used to create a new table that combines the three individual tables created before:
 <pre>
 CREATE EXTERNAL TABLE dig.tbm_sf_la AS
     SELECT tbm, year, month, day, hour, dist, lon, lat
@@ -212,6 +216,16 @@ CREATE EXTERNAL TABLE dig.tbm_sf_la AS
 </pre>
 
 ### Results
+A sample of few rows from final table:
+<pre>
+SELECT * FROM dig.tbm_sf_la
+    ORDER BY dist
+    LIMIT 10;
+</pre>
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/TBM%20Results%20Sample.jpg" width="800"/>
+
+
 Number of rows for each TBM
 <pre>
 SELECT tbm, COUNT(*) AS num_rows FROM dig.tbm_sf_la GROUP BY tbm ORDER BY tbm;
@@ -223,13 +237,4 @@ Bertha II           91619
 Diggy McDigface     93163
 Shai-Hulud          94237
 </pre>
-
-A sample of few rows from final table:
-<pre>
-SELECT * FROM dig.tbm_sf_la
-    ORDER BY dist
-    LIMIT 10;
-</pre>
-<p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/TBM%20Results%20Sample.jpg" width="400"/>
 
