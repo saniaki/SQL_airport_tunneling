@@ -42,10 +42,12 @@ SHOW TABLES;
 Showing columns in the "flights" and "planes" tables:
 <pre>
 SHOW TABLES fly.flights;
-SHOW TABLES fly.planes;
 </pre>
 <p align="center">
 <img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/flights%20Columns.jpg" width="700"/>
+<pre>
+SHOW TABLES fly.planes;
+</pre>
 <p align="center">
 <img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/planes%20Columns.jpg" width="700"/>
 
@@ -53,12 +55,13 @@ Showing few lines of "flights" and "planes" tables:
 <pre>
 SELECT * FROM fly.flights
     LIMIT 5; 
-SELECT * FROM fly.planes
-    LIMIT 5;
 </pre>
 <p align="center">
 <img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/flights%20Samples.jpg" width="700"/>
-
+<pre>
+SELECT * FROM fly.planes
+    LIMIT 5;
+</pre>
 <p align="center">
 <img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/planes%20Samples.jpg" width="700"/>
 
