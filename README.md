@@ -1,6 +1,10 @@
 # SQL_airport_tunneling
 SQL queries for analyzing and managing big data available on Amazon Web Service coulde
 
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
+
+
 **Databases** : <br>
 1 - fly databse
 * ten full years of data, representing flights and airports statistics from January 1, 2008 through December 31, 2017. 
