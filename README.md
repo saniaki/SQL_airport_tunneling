@@ -28,18 +28,25 @@ setting "fly" database as current
 <pre>
 USE fly;
 </pre>
-showing tables available in the databse:
+
+Showing tables available in the databse:
 <pre>
+SHOW TABLES;
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/Digit-Image-Classifier/blob/master/Images/Sample_output_3.jpg" width="700"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/Tables%20in%20fly%20Databse.jpg" width="700"/>
+</pre>
+
+Showing columns in the "flights" and "planes" tables:
+<pre>
 SHOW TABLES fly.flights;
 SHOW TABLES fly.planes;
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/Digit-Image-Classifier/blob/master/Images/Sample_output_3.jpg" width="700"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/flights%20Columns.jpg" width="700"/>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/Digit-Image-Classifier/blob/master/Images/Sample_output_3.jpg" width="700"/>
-showing few lines of "flights" and "planes" tables:
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/planes%20Columns.jpg" width="700"/>
+
+Showing few lines of "flights" and "planes" tables:
 <pre>
 SELECT * FROM fly.flights
     LIMIT 5; 
@@ -47,10 +54,10 @@ SELECT * FROM fly.planes
     LIMIT 5;
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/Digit-Image-Classifier/blob/master/Images/Sample_output_3.jpg" width="700"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/flights%20Samples.jpg" width="700"/>
 
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/Digit-Image-Classifier/blob/master/Images/Sample_output_3.jpg" width="700"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/planes%20Samples.jpg" width="700"/>
 
 
 
@@ -73,10 +80,10 @@ ORDER BY tot_num_seats DESC;<br>
 
 
 ### Results
-First 7 rows of the results table:
+First 8 rows of the results table:
 
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/Digit-Image-Classifier/blob/master/Images/Sample_output_3.jpg" width="700"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/Results.jpg" width="700"/>
 
 
 First and second directions:
