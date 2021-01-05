@@ -57,13 +57,13 @@ SELECT * FROM fly.flights
     LIMIT 5; 
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/flights%20Samples.jpg" width="700"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/flights%20Samples.jpg" width="900"/>
 <pre>
 SELECT * FROM fly.planes
     LIMIT 5;
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/planes%20Samples.jpg" width="700"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/planes%20Samples.jpg" width="900"/>
 
 
 
@@ -89,7 +89,7 @@ ORDER BY tot_num_seats DESC;<br>
 First 8 rows of the results table:
 
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/Results.jpg" width="700"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/Results.jpg" width="900"/>
 
 
 First and second directions:
