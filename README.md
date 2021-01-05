@@ -32,9 +32,9 @@ USE fly;
 Showing tables available in the databse:
 <pre>
 SHOW TABLES;
-<p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/Tables%20in%20fly%20Databse.jpg" width="700"/>
 </pre>
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/Tables%20in%20fly%20Databse.jpg" width="100"/>
 
 Showing columns in the "flights" and "planes" tables:
 <pre>
