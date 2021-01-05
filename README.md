@@ -18,18 +18,18 @@ What to report:
 * average yearly total number of seats (passengers) on the planes between the two airports
 
 
-# SQL query
-SELECT origin, dest,
-    ROUND(CAST(COUNT(*) AS decimal)/10) AS avg_num_flights,
-    SUM(seats) AS tot_num_seats,
-    ROUND(CAST(SUM(seats) AS decimal)/10) AS avg_annual_num_pass,
-    ROUND(AVG(distance)) AS avg_flight_dist,
-    ROUND(AVG(arr_delay)) AS avg_arr_delay_minutes
-FROM fly.flights AS f
-LEFT OUTER JOIN fly.planes AS p
-    ON f.tailnum = p.tailnum
-WHERE distance BETWEEN 300 AND 400
-GROUP BY origin, dest
-    HAVING avg_num_flights >= 5000  
-ORDER BY tot_num_seats DESC;
+### SQL query
+SELECT origin, dest,<br>
+    ROUND(CAST(COUNT(*) AS decimal)/10) AS avg_num_flights,<br>
+    SUM(seats) AS tot_num_seats,<br>
+    ROUND(CAST(SUM(seats) AS decimal)/10) AS avg_annual_num_pass,<br>
+    ROUND(AVG(distance)) AS avg_flight_dist,<br>
+    ROUND(AVG(arr_delay)) AS avg_arr_delay_minutes<br>
+FROM fly.flights AS f<br>
+LEFT OUTER JOIN fly.planes AS p<br>
+    ON f.tailnum = p.tailnum<br>
+WHERE distance BETWEEN 300 AND 400<br>
+GROUP BY origin, dest<br>
+    HAVING avg_num_flights >= 5000  <br>
+ORDER BY tot_num_seats DESC;<br>
 
