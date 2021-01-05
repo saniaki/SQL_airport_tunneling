@@ -95,6 +95,7 @@ First 8 rows of the results table:
 First and second directions:
 
 <pre>
+                                                First direction second direction
 Three-letter airport code for origin	        SFO	LAX
 Three-letter airport code for destination	LAX	SFO
 Average flight distance in miles	        337	337
