@@ -33,7 +33,24 @@ WHERE distance BETWEEN 300 AND 400<br>
 GROUP BY origin, dest<br>
         HAVING avg_num_flights >= 5000  <br>
 ORDER BY tot_num_seats DESC;<br>
-<pre>
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <pre>
 hello, this is
