@@ -209,7 +209,7 @@ SELECT tbm, COUNT(*) AS num_rows FROM dig.tbm_sf_la GROUP BY tbm ORDER BY tbm;
 </pre>
 
 <pre>
-**tbm**             **num_rows**
+(TBM)               (num_rows)
 Bertha II           91619
 Diggy McDigface     93163
 Shai-Hulud          94237
