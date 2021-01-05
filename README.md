@@ -22,7 +22,7 @@ What to report:
 SELECT origin, dest,<br>
 ROUND(CAST(COUNT(*) AS decimal)/10) AS avg_num_flights,<br>
 SUM(seats) AS tot_num_seats,<br>
-    ROUND(CAST(SUM(seats) AS decimal)/10) AS avg_annual_num_pass,<br>
+ROUND(CAST(SUM(seats) AS decimal)/10) AS avg_annual_num_pass,<br>
         ROUND(AVG(distance)) AS avg_flight_dist,<br>
         ROUND(AVG(arr_delay)) AS avg_arr_delay_minutes<br>
 FROM fly.flights AS f<br>
@@ -33,3 +33,14 @@ GROUP BY origin, dest<br>
         HAVING avg_num_flights >= 5000  <br>
 ORDER BY tot_num_seats DESC;<br>
 
+
+<pre>
+hello, this is
+   just an     example
+....
+</pre>
+
+The action of every agent <br />
+  into the world <br />
+starts <br />
+  from their physical selves. <br />
