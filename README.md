@@ -20,8 +20,8 @@ What to report:
 
 ### SQL query
 SELECT origin, dest,<br>
-        ROUND(CAST(COUNT(*) AS decimal)/10) AS avg_num_flights,<br>
-        SUM(seats) AS tot_num_seats,<br>
+    ROUND(CAST(COUNT(*) AS decimal)/10) AS avg_num_flights,<br>
+    SUM(seats) AS tot_num_seats,<br>
         ROUND(CAST(SUM(seats) AS decimal)/10) AS avg_annual_num_pass,<br>
         ROUND(AVG(distance)) AS avg_flight_dist,<br>
         ROUND(AVG(arr_delay)) AS avg_arr_delay_minutes<br>
