@@ -130,25 +130,25 @@ Following quesries are used to examin data usin AWS CLI (Amazon Web Service Comm
 aws s3 ls s3://training-coursera2/tbm_sf_la/
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/AWS%20Examining_01.jpg" width="400"/>
     
 <pre>
 aws s3 cp s3://training-coursera2/tbm_sf_la/central/hourly_central.csv -|head
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/AWS%20Examining_02.jpg" width="400"/>
     
 <pre>
 aws s3 cp s3://training-coursera2/tbm_sf_la/north/hourly_north.csv -|head
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/AWS%20Examining_03.jpg" width="400"/>
     
 <pre>
 aws s3 cp s3://training-coursera2/tbm_sf_la/south/hourly_south.tsv -|head
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/AWS%20Examining_04.jpg" width="400"/>
 
 *Observations*:
 * Data are generated hourly including (tbm, year, month, day, hour, distance, longitude, latitude)
@@ -231,18 +231,5 @@ SELECT * FROM dig.tbm_sf_la
     LIMIT 10;
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/TBM%20Results%20Sample.jpg" width="400"/>
 
-
-
-
-<pre>
-hello, this is
-   just an     example
-....
-</pre>
-
-The action of every agent <br />
-  into the world <br />
-starts <br />
-  from their physical selves. <br />
