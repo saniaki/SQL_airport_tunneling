@@ -11,14 +11,43 @@ Criteria:
 * airport pair with largest total number of seats on the planes between them
 
 What to report:
-* pair of airport with above cretiria
+* pair of airports with above criteria
 * average arrival delay for flights between them
 * average flight distance (in miles) between airports, in each direction
 * average number of flights per year between airports, in each direction
 * average yearly total number of seats (passengers) on the planes between the two airports
 
 ### Examining data
-..........
+Following quesries are used to examin data in Hue.
+
+setting "fly" database as current
+<pre>
+USE fly;
+</pre>
+showing tables available in the databse:
+<pre>
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/Digit-Image-Classifier/blob/master/Images/Sample_output_3.jpg" width="700"/>
+SHOW TABLES fly.flights;
+SHOW TABLES fly.planes;
+</pre>
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/Digit-Image-Classifier/blob/master/Images/Sample_output_3.jpg" width="700"/>
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/Digit-Image-Classifier/blob/master/Images/Sample_output_3.jpg" width="700"/>
+showing few lines of "flights" and "planes" tables:
+<pre>
+SELECT * FROM fly.flights
+    LIMIT 5; 
+SELECT * FROM fly.planes
+    LIMIT 5;
+</pre>
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/Digit-Image-Classifier/blob/master/Images/Sample_output_3.jpg" width="700"/>
+
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/Digit-Image-Classifier/blob/master/Images/Sample_output_3.jpg" width="700"/>
+
 
 
 ### SQL query
