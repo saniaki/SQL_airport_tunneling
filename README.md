@@ -1,5 +1,8 @@
-# SQL_airport_tunneling
-SQL queries for analyzing and managing big data available on Amazon Web Service coulde
+# Using SQL Queries for a Tunneling Project Between Two Airports in USA
+SQL queries for analyzing and managing big data available on Amazon Web Service cloud.
+
+**Phase 1** : Finding most approperiate airports based on available data to construct a high-speed rail tunnel<br>
+**Phase 2** : Managing data generated from different Tunnel Boring Machines (TBMs) during constuction of the tunnel <br>
 
 <p align="center">
 <img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
@@ -7,13 +10,14 @@ SQL queries for analyzing and managing big data available on Amazon Web Service 
 
 **Data** : <br>
 1 - fly databse
-* ten full years of data, representing flights and airports statistics from January 1, 2008 through December 31, 2017. 
-* four tables, flights (61392822 rows), planes (453361 rows), airports (1333 rows), airlines (25 rows)
-* source https://www.bts.dot.gov/newsroom/2018-traffic-data-us-airlines-and-foreign-airlines-us-flights  <br>
+* Ten full years of data, representing flights and airports statistics from January 1, 2008 through December 31, 2017. 
+* Four tables, flights (61392822 rows), planes (453361 rows), airports (1333 rows), airlines (25 rows)
+* Source https://www.bts.dot.gov/newsroom/2018-traffic-data-us-airlines-and-foreign-airlines-us-flights  <br>
 
 2 - Tunnel Boring Machines (TBMs) data files
 * Three TBMs are used for three section of tunnel: Bertha II, Shai-Hulud, and Diggy McDigface
 * TBMS are generating data as they are working, the format of generated data is slightly different for each machine
+* Number of data: Bertha II (91619), Shai-Hulud (94237), Diggy McDigface (93163)
 
 **SQL query engine**:
 *Impala using Hue web interface
