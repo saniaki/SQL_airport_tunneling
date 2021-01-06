@@ -1,15 +1,15 @@
-# Using SQL Queries for a Tunneling Project Between Two Airports in USA
+# SQL Queries for a Tunneling Project Between Two Airports in USA
 SQL queries for analyzing and managing big data available on Amazon Web Service cloud.
 
-**Phase 1** : Finding most approperiate airports based on available data to construct a high-speed rail tunnel<br>
-**Phase 2** : Managing data generated from different Tunnel Boring Machines (TBMs) during constuction of the tunnel <br>
+**Phase 1** : Finding most appropriate airports based on available data to construct a high-speed rail tunnel<br>
+**Phase 2** : Managing data generated from different Tunnel Boring Machines (TBMs) during construction of the tunnel <br>
 
 <p align="center">
 <img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/map.jpg" width="400"/>
 
 
 **Data** : <br>
-1 - fly databse
+1 - fly database
 * Ten full years of data, representing flights and airports statistics from January 1, 2008 through December 31, 2017. 
 * Four tables, flights (61392822 rows), planes (453361 rows), airports (1333 rows), airlines (25 rows)
 * Source https://www.bts.dot.gov/newsroom/2018-traffic-data-us-airlines-and-foreign-airlines-us-flights  <br>
@@ -22,7 +22,7 @@ SQL queries for analyzing and managing big data available on Amazon Web Service 
 **SQL query engine**:
 *Impala using Hue web interface
 
-## Phase 1: Finding two most approperiate airports to construct a high-speed rail tunnel
+## Phase 1: Finding two most appropriate airports to construct a high-speed rail tunnel
 
 *Criteria*: 
 * two airports must be between 300 and 400 miles apart
@@ -37,14 +37,14 @@ SQL queries for analyzing and managing big data available on Amazon Web Service 
 * average yearly total number of seats (passengers) on the planes between the two airports
 
 ### Examining data
-Following quesries are used to examin data in Hue.
+Following queries are used to examine data in Hue.
 
 setting "fly" database as current
 <pre>
 USE fly;
 </pre>
 
-Showing tables available in the databse:
+Showing tables available in the database:
 <pre>
 SHOW TABLES;
 </pre>
@@ -80,7 +80,7 @@ SELECT * FROM fly.planes
 
 
 ### SQL query
-Following quesry is used in Impala to answer the questions presented in the "Goals" above.
+Following query is used in Impala to answer the questions presented in the "Goals" above.
 <pre>
 SELECT origin, dest,<br>
         ROUND(CAST(COUNT(*) AS decimal)/10) AS avg_num_flights,<br>
@@ -123,15 +123,15 @@ Sanity checks:
 * Average flight distance for all rows in the results table should be between 300 and 400
 
 
-## Phase 2: Creating a table for generated data from differetent Tunnel Boring Machines (TBMs) 
+## Phase 2: Creating a table for generated data from different Tunnel Boring Machines (TBMs) 
 *Problem description*:
-* The tunnel is constructed in three sections, where a different TBM is used for each section. Data generated from these TBMs are stored in seperate data files on Amazon S3. The format of data is also different.
+* The tunnel is constructed in three sections, where a different TBM is used for each section. Data generated from these TBMs are stored in separate data files on Amazon S3. The format of data is also different.
 
 *Goal*:
 * Generating a table on HDFS including data from all three TBMs.
 
 ### Examining data files
-Following quesries are used to examin data usin AWS CLI (Amazon Web Service Command Line Interface)
+Following queries are used to examine data using AWS CLI (Amazon Web Service Command Line Interface)
 <pre>
 aws s3 ls s3://training-coursera2/tbm_sf_la/
 </pre>
@@ -163,8 +163,8 @@ aws s3 cp s3://training-coursera2/tbm_sf_la/south/hourly_south.tsv -|head
 * First data file has a header
 
 
-### Creating three individual tables in HDFS for each TBM (bouring machine)
-For firts TBM (central)
+### Creating three individual tables in HDFS for each TBM (boring machine)
+For first TBM (central)
 <pre>
 CREATE EXTERNAL TABLE dig.tbm_sf_la_central
     (tbm STRING,year SMALLINT,month TINYINT,day TINYINT,hour TINYINT,
@@ -192,7 +192,7 @@ CREATE EXTERNAL TABLE dig.tbm_sf_la_south
 
 
 ### Loading data files into the tables directories on HDFS
-These three command lines are used to doanlowd data from S3 into the HDFS
+These three command lines are used to download data from S3 into the HDFS
 <pre>
 hdfs dfs -cp s3a://training-coursera2/tbm_sf_la/central/hourly_central.csv /user/hive/warehouse/dig.db/tbm_sf_la_central/
 </pre>
