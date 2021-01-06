@@ -112,8 +112,8 @@ A summary of results from first two rows of the results table:
 Three-letter airport code for origin            SFO	                LAX
 Three-letter airport code for destination       LAX	                SFO
 Average flight distance in miles                337	                337
-Average number of flights per year              14712               14540
-Average annual passenger capacity               1996597             1981059
+Average number of flights per year              14712                   14540
+Average annual passenger capacity               1996597                 1981059
 Average arrival delay in minutes                10	                14
 </pre>
 
