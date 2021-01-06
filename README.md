@@ -154,7 +154,7 @@ aws s3 cp s3://training-coursera2/tbm_sf_la/north/hourly_north.csv -|head
 aws s3 cp s3://training-coursera2/tbm_sf_la/south/hourly_south.tsv -|head
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/AWS%20Examining_04.jpg" width="400"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/AWS%20Examining_04.jpg" width="550"/>
 
 *Observations*:
 * Data are generated hourly including (tbm, year, month, day, hour, distance, longitude, latitude)
@@ -227,7 +227,7 @@ SELECT * FROM dig.tbm_sf_la
     LIMIT 10;
 </pre>
 <p align="center">
-<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/TBM%20Results%20Sample.jpg" width="800"/>
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/TBM%20Results%20Sample.jpg" width="900"/>
 
 
 Number of rows for each TBM
