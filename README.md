@@ -232,13 +232,8 @@ SELECT * FROM dig.tbm_sf_la
 
 Number of rows for each TBM
 <pre>
-SELECT tbm, COUNT(*) AS num_rows FROM dig.tbm_sf_la GROUP BY tbm ORDER BY tbm;
+SELECT tbm, COUNT(*) FROM dig.tbm_sf_la
+    GROUP BY tbm;
 </pre>
-
-<pre>
-(TBM)               (num_rows)
-Bertha II           91619
-Diggy McDigface     93163
-Shai-Hulud          94237
-</pre>
-
+<p align="center">
+<img  align="center" src="https://github.com/saniaki/SQL_airport_tunneling/blob/main/images/TBM%20Results%20Summary.jpg" width="500"/>
