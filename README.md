@@ -131,7 +131,7 @@ Sanity checks:
 * Generating a table on HDFS including data from all three TBMs.
 
 ### Examining data files
-Following queries are used to examine data using AWS CLI (Amazon Web Service Command Line Interface)
+Following commands are used to examine data using AWS CLI (Amazon Web Service Command Line Interface)
 <pre>
 aws s3 ls s3://training-coursera2/tbm_sf_la/
 </pre>
@@ -192,7 +192,7 @@ CREATE EXTERNAL TABLE dig.tbm_sf_la_south
 
 
 ### Loading data files into the tables directories on HDFS
-These three command lines are used to download data from S3 into the HDFS
+These three sheel command lines are used to download data from S3 into the HDFS
 <pre>
 hdfs dfs -cp s3a://training-coursera2/tbm_sf_la/central/hourly_central.csv /user/hive/warehouse/dig.db/tbm_sf_la_central/
 </pre>
